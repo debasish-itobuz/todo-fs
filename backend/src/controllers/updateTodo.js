@@ -3,7 +3,11 @@ import todoSchema from "../models/todoSchema.js";
 export const updateTodo = async (req, res) => {
   try {
     const { title } = req.body;
+    // console.log(title);
+
     const todoId = req.params.id;
+    // console.log(todoId);
+
     const data = await todoSchema.findOne({
       _id: todoId,
     });
@@ -14,19 +18,6 @@ export const updateTodo = async (req, res) => {
       });
     }
     data.title = title;
-
-    // const existingTodo = await todoSchema.findOne({ title});
-
-    const existingTodo = await todoSchema.findOne({
-      title,
-      _id: { $ne: todoId },
-    });
-    if (existingTodo) {
-      return res.status(400).json({
-        success: false,
-        message: "Title already exists",
-      });
-    }
 
     await data.save();
     console.log(data);

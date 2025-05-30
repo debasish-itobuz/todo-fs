@@ -10,7 +10,8 @@ const EditTodo = () => {
   })
 
   const { id } = useParams()
-  // console.log("id", id)
+  console.log("id", id)
+
   const navigate = useNavigate()
 
   const getTodo = async () => {

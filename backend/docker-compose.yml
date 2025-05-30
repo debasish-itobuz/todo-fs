@@ -4,7 +4,7 @@ services:
     container_name: todo_container
     image: mongo:latest
     ports:
-      - "4008:27017"
+      - "4007:27017"
     volumes:
       - mongo_data:/data/db
 

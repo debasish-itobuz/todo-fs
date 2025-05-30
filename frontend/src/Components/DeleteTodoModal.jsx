@@ -1,7 +1,11 @@
 import axios from 'axios'
+import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
+import { myContext } from '../context/myContext'
 
-const DeleteTodoModal = ({ setOpenDelModal, todoId, getAll }) => {
+const DeleteTodoModal = ({ setOpenDelModal, todoId }) => {
+    const { getAll } = useContext(myContext)
+
 
     const deleteProduct = async () => {
         try {
