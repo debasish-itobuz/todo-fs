@@ -19,6 +19,19 @@ export const updateTodo = async (req, res) => {
     }
     data.title = title;
 
+    // const existingTodo = await todoSchema.findOne({ title});
+
+    const existingTodo = await todoSchema.findOne({
+      title,
+      _id: { $ne: todoId },
+    });
+    if (existingTodo) {
+      return res.status(400).json({
+        success: false,
+        message: "Title already exists",
+      });
+    }
+
     await data.save();
     console.log(data);
 

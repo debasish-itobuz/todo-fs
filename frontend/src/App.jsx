@@ -12,6 +12,7 @@ function App() {
           <Route path='*' element={<ErrorPage />} />
           <Route path='/' element={<Home />} />
           <Route path='/editTodo/:id' element={<EditTodo />} />
+
         </Routes>
       </BrowserRouter>
     </>

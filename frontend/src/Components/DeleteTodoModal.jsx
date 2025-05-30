@@ -1,10 +1,11 @@
 import axios from 'axios'
-import React, { useContext } from 'react'
 import toast from 'react-hot-toast'
-import { myContext } from '../context/myContext'
+import { getTodo } from '../features/TodoSlice'
+import { useDispatch } from 'react-redux'
+
 
 const DeleteTodoModal = ({ setOpenDelModal, todoId }) => {
-    const { getAll } = useContext(myContext)
+    const dispatch = useDispatch()
 
 
     const deleteProduct = async () => {
@@ -13,10 +14,12 @@ const DeleteTodoModal = ({ setOpenDelModal, todoId }) => {
             console.log(res)
             setOpenDelModal(false)
             toast.success("Todo deleted successfully")
-            getAll()
+            // getAll()
+            dispatch(getTodo())
 
         } catch (error) {
-            toast.error(error.response.data.message)
+            console.log(error)
+            toast.error("invalid")
         }
     }
 
